@@ -16,5 +16,11 @@ div {
 
 .item p {
   display: inline-block;
-  width: 49%;
+  width: 50%;
+}
+
+.flavor,
+.dessert {
+  text-align: left;
+  width: 75%;
 }
