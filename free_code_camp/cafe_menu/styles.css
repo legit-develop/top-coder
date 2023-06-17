@@ -2,25 +2,28 @@ h1,
 h2,
 p {
   text-align: center;
+  font-family: Impact;
 }
 
 body {
   /*background: burlywood;*/
   background-image: url("https://cdn.freecodecamp.org/curriculum/css-cafe/beans.jpg");
 }
-div {
+.menu {
   width: 80%;
   background: burlywood;
-  margin: 0 auto;
-}
-
-.item p {
-  display: inline-block;
-  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px;
+  max-width: 500px;
 }
 
 .flavor,
 .dessert {
   text-align: left;
   width: 75%;
+}
+
+.established {
+  font-style: italic;
 }
