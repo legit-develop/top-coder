@@ -1,0 +1,21 @@
+h1 {
+  text-align: center;
+}
+
+.marker {
+  height: 20px;
+  width: 200px;
+  margin: 10px auto;
+}
+
+.one {
+  background: red;
+}
+
+.two {
+  background: green;
+}
+
+.three {
+  background: blue;
+}
