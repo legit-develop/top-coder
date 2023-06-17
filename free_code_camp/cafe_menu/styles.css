@@ -27,3 +27,26 @@ body {
 .established {
   font-style: italic;
 }
+
+hr {
+  height: 2px;
+  background: brown;
+  border: none;
+  height: 2px;
+}
+
+a {
+  color: #000;
+}
+
+a:visited {
+  color: #000;
+}
+
+a:hover {
+  color: brown;
+}
+
+a:active {
+  color: #fff;
+}
