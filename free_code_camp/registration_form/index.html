@@ -47,7 +47,29 @@
           ></label
         >
       </fieldset>
-      <fieldset></fieldset>
+      <fieldset>
+        <label for="profile-picture"
+          ><input type="file" name="" id="profile-picture"
+        /></label>
+        <label for="age"
+          >Input your age (years):
+          <input type="number" name="" id="age" min="13" max="120"
+        /></label>
+        <label for="referrer">
+          <select name="" id="referrer">
+            <option value="">(select one)</option>
+            <option value="1">freeCodeCamp News</option>
+            <option value="2">freeCodeCamp YouTube Channel</option>
+            <option value="3">freeCodeCamp Forum</option>
+            <option value="4">Other</option>
+          </select>
+        </label>
+        <label for="bio"
+          >Provide a bio
+          <textarea name="" id="bio" cols="30" rows="3"></textarea>
+        </label>
+      </fieldset>
+
       <input type="submit" value="submit" />
     </form>
   </body>
