@@ -35,3 +35,8 @@ body {
   gap: 16px;
   margin: 0 auto;
 }
+
+.gallery::after {
+  content: "";
+  width: 350px;
+}
