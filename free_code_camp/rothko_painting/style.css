@@ -1,0 +1,20 @@
+.frame {
+  border: 50px solid black;
+  width: 500px;
+  padding: 50px;
+  margin: 20px auto;
+}
+
+.canvas {
+  width: 500px;
+  height: 600px;
+  background: #4d0f00;
+  overflow: hidden; /* to maintain the dimensions of the inner div */
+}
+
+.one {
+  width: 425px;
+  height: 150px;
+  background: #efb762;
+  margin: 20px auto; /*centering the element */
+}
