@@ -4,10 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Legal Survey Form</title>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <h1>freeCodeCamp Survey Form</h1>
-    <p>Than you for taking the time to help us improve the platform</p>
+    <p class="title">
+      Than you for taking the time to help us improve the platform
+    </p>
 
     <form action="https://www.freeCodeCamp.org" method="post">
       <fieldset>
@@ -34,14 +37,15 @@
         </label>
         <p>Would you recommend freeCodeCamp to a friend</p>
         <label for="definite"
-          ><input type="radio" name="recommend" id="definite"
-        /></label>
+          ><input type="radio" name="recommend" id="definite" />
+          Definitely</label
+        >
         <label for="maybe"
-          ><input type="radio" name="recommend" id="maybe"
-        /></label>
+          ><input type="radio" name="recommend" id="maybe" /> Maybe</label
+        >
         <label for="not-sure"
-          ><input type="radio" name="recommend" id="not-sure"
-        /></label>
+          ><input type="radio" name="recommend" id="not-sure" /> Not sure</label
+        >
         <label for="feature">
           <select name="favorite" id="feature">
             <option value="">Select an option</option>
@@ -94,19 +98,19 @@
           ><input type="checkbox" name="additional" id="additional" />
           Additional Courses</label
         >
-
-        <fieldset>
-          <label for="suggestion"
-            >Any comments or suggestions?
-            <textarea
-              name="comment"
-              id="suggestion"
-              cols="30"
-              rows="3"
-            ></textarea>
-          </label>
-        </fieldset>
       </fieldset>
+      <fieldset>
+        <label for="suggestion"
+          >Any comments or suggestions?
+          <textarea
+            name="comment"
+            id="suggestion"
+            cols="30"
+            rows="3"
+          ></textarea>
+        </label>
+      </fieldset>
+
       <input type="submit" value="Submit" />
     </form>
   </body>
