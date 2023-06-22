@@ -11,12 +11,15 @@ body {
 label {
   display: block;
   margin: 0.5rem 0;
+  justify-content: s;
 }
 
 h1,
 p {
   margin: 1em auto;
   text-align: center;
+  list-style-type: none;
+  scroll-behavior: smooth;
 }
 
 form {
