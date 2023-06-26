@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=devide-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <nav id="navbar">
+      <header>Node.js Documentation</header>
+      <ul>
+        <li>
+          <a href="#Introduction_to_Node.js" class="nav-link"
+            >Introduction to Node.js</a
+          >
+        </li>
+        <li><a href="#Getting_Stared" class="nav-link">Getting Started</a></li>
+        <li>
+          <a href="#Easy_profiling_for_Node.js_Applications" class="nav-link"
+            >Easy profiling for Node.js Applications</a
+          >
+        </li>
+        <li>
+          <a href="#Node.js_Security_Best_Practices" class="nav-link"
+            >Node.js Security Best Practices</a
+          >
+        </li>
+        <li><a href="#Node_Package_Manager">Node Package Manager</a></li>
+        <li>
+          <a href="Migrating to safe Buffer" class="nav-link"
+            >Migrating to safe Buffer</a
+          >
+        </li>
+      </ul>
+    </nav>
+
+    <main id="main-doc">
+      <section class="main-section" id="Introduction_to_Node.js">
+        <header>Introduction to Node.js</header>
+        <p>
+          Getting started guide to Node.js, the server-side JavaScript runtime
+          environment. Node.js is built on top of the Google Chrome V8
+          JavaScript engine, and it's mainly used to create web servers - but
+          it's not limited to just that.
+        </p>
+        <p>
+          Node.js is an open-source and cross-platform JavaScript runtime
+          environment. It is a popular tool for almost any kind of project!
+        </p>
+
+        <p>
+          Node.js runs the V8 JavaScript engine, the core of Google Chrome,
+          outside of the browser. This allows Node.js to be very performant.
+        </p>
+        <p>
+          A Node.js app runs in a single process, without creating a new thread
+          for every request. Node.js provides a set of asynchronous I/O
+          primitives in its standard library that prevent JavaScript code from
+          blocking and generally, libraries in Node.js are written using
+          non-blocking paradigms, making blocking behavior the exception rather
+          than the norm.
+        </p>
+        <p>
+          When Node.js performs an I/O operation, like reading from the network,
+          accessing a database or the filesystem, instead of blocking the thread
+          and wasting CPU cycles waiting, Node.js will resume the operations
+          when the response comes back.
+        </p>
+        <p>
+          This allows Node.js to handle thousands of concurrent connections with
+          a single server without introducing the burden of managing thread
+          concurrency, which could be a significant source of bugs.
+        </p>
+      </section>
+      <section class="main-section" id="Getting_Started">
+        <header>Getting Started</header>
+        <h3>How do I start with Node.js after I installed it?</h3>
+        <p>
+          Once we have installed Node.js, let's build our first web server.
+          Create a file named app.js containing the following contents:
+        </p>
+        <pre>
+      <code>
+          const http = require('http');
+
+          const hostname = '127.0.0.1';
+          const port = 3000;
+
+          const server = http.createServer((req, res) => {
+          res.statusCode = 200;
+          res.setHeader('Content-Type', 'text/plain');
+          res.end('Hello World');
+          });
+
+          server.listen(port, hostname, () => {
+          console.log(`Server running at http://${hostname}:${port}/`);
+          });
+      </code>
+    </pre>
+        <p>
+          Now, run your web server using node app.js. Visit
+          http://localhost:3000 and you will see a message saying "Hello World".
+        </p>
+      </section>
+
+      <section
+        class="main-section"
+        id="Easy_profiling_for_Node.js_Applications"
+      >
+        <header>Easy profiling for Node.js Applications</header>
+        <p>
+          At this point, it is very clear that the password-based hash
+          generation should be the target of our optimization. Thankfully,
+          you've fully internalized the benefits of asynchronous programming and
+          you realize that the work to generate a hash from the user's password
+          is being done in a synchronous way and thus tying down the event loop.
+          This prevents us from working on other incoming requests while
+          computing a hash.
+        </p>
+        <p>
+          At this point, it is very clear that the password-based hash
+          generation should be the target of our optimization. Thankfully,
+          you've fully internalized the benefits of asynchronous programming and
+          you realize that the work to generate a hash from the user's password
+          is being done in a synchronous way and thus tying down the event loop.
+          This prevents us from working on other incoming requests while
+          computing a hash.
+        </p>
+        <pre>
+      <code>
+        app.get('/auth', (req, res) => {
+        let username = req.query.username || '';
+        const password = req.query.password || '';
+
+        username = username.replace(/[!@#$%^&*]/g, '');
+
+        if (!username || !password || !users[username]) {
+        return res.sendStatus(400);
+        }
+
+        crypto.pbkdf2(password, users[username].salt, 10000, 512, 'sha512', (err, hash) => {
+       if (users[username].hash.toString() === hash.toString()) {
+       res.sendStatus(200);
+       } else {
+      res.sendStatus(401);
+     }
+  });
+});
+      </code>
+    </pre>
+      </section>
+      <section class="main-section" id="Node.js_Security_Best_Practices">
+        <header>Node.js Security Best Practices</header>
+        <h3>Intent</h3>
+        <p>
+          This document intends to extend the current threat model and provide
+          extensive guidelines on how to secure a Node.js application.
+        </p>
+
+        <h3>Document Content</h3>
+        <ul>
+          <li>
+            Best practices: A simplified condensed way to see the best
+            practices. We can use this issue or this guideline as the starting
+            point. It is important to note that this document is specific to
+            Node.js, if you are looking for something broad, consider OSSF Best
+            Practices.
+          </li>
+          <li>
+            Attacks explained: illustrate and document in plain English with
+            some code example (if possible) the attacks that we are mentioning
+            in the threat model.
+          </li>
+          <li>
+            Third-Party Libraries: define threats (typosquatting attacks,
+            malicious packages...) and best practices regarding node modules
+            dependencies, etc...
+          </li>
+        </ul>
+        <h3>Denial of Service of HTTP server (CWE-400)</h3>
+        <p>
+          This is an attack where the application becomes unavailable for the
+          purpose it was designed due to the way it processes incoming HTTP
+          requests. These requests need not be deliberately crafted by a
+          malicious actor: a misconfigured or buggy client can also send a
+          pattern of requests to the server that result in a denial of service.
+        </p>
+      </section>
+      <section class="main-section">
+        <header>Node Package Manager</header>
+        <p>
+          npm is the world's largest software registry. Open source developers
+          from every continent use npm to share and borrow packages, and many
+          organizations use npm to manage private development as well.
+        </p>
+        <p>npm consists of three distinct components:</p>
+        <ol>
+          <li>the website</li>
+          <li>the Command Line Interface (CLI)</li>
+          <li>the registry</li>
+        </ol>
+
+        <p>
+          Use the website to discover packages, set up profiles, and manage
+          other aspects of your npm experience. For example, you can set up
+          organizations to manage access to public or private packages.
+        </p>
+        <p>
+          The CLI runs from a terminal, and is how most developers interact with
+          npm.
+        </p>
+        <p>
+          The registry is a large public database of JavaScript software and the
+          meta-information surrounding it.
+        </p>
+
+        <p>The current version you have on your system is checked by:</p>
+
+        <pre>
+      <code>$ node --version</code>
+    </pre>
+
+        <p>Packages are installed by using</p>
+
+        <pre>
+      <code>$ npm install [package spec...] </code>
+    </pre>
+      </section>
+      <section class="main-section" id="Handling_Events">
+        <header>Handling Events</header>
+      </section>
+      <section class="main-section"></section>
+      <section class="main-section" id="Handling_Events">
+        <header>Handling Events</header>
+      </section>
+      <section class="main-section"></section>
+    </main>
+  </body>
+</html>
