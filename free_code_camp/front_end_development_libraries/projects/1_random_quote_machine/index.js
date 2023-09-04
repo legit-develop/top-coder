@@ -66,6 +66,7 @@ function App() {
             <a href="" target="_blank" className="btn btn-warning">
               <i className="fa fa-tumblr"></i>
             </a>
+            <button className="btn btn-warning">Check</button>
           </div>
         </div>
       </div>
