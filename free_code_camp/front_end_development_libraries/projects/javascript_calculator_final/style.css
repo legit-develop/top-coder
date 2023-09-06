@@ -1,0 +1,81 @@
+#container {
+  padding-top: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.calculator {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-areas:
+    "display display display display"
+    "clear clear divide multiply"
+    "seven eight nine subtract"
+    "four five six add"
+    "one two three equals"
+    "zero zero decimal equals";
+}
+
+.buttons {
+  padding: 10px 30px;
+  background: rgb(1, 1, 34);
+  color: #fff;
+  margin: 5px;
+  border-radius: 50%;
+  font-size: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.buttons:hover {
+  box-shadow: 0 8px 10px rgba(0, 0, 0, 0.9);
+}
+
+#display {
+  grid-area: display;
+  background: rgb(209, 205, 205);
+  text-align: right;
+  border-radius: 10px;
+  font-size: 30px;
+}
+
+#clear {
+  grid-area: clear;
+  border-radius: 10px;
+  background: rgb(250, 99, 44);
+}
+
+#zero {
+  grid-area: zero;
+  border-radius: 10px;
+}
+
+#equals {
+  grid-area: equals;
+  border-radius: 10px;
+  background: rgb(179, 30, 30);
+}
+
+.numbers {
+  background: rgb(4, 4, 65);
+}
+
+.total {
+  padding: 5px 20px;
+  color: blue;
+}
+
+input::placeholder {
+  color: #000;
+}
+
+#display input {
+  width: 100%;
+  text-align: right;
+  background: rgb(209, 205, 205);
+  padding: 0 20px;
+}
